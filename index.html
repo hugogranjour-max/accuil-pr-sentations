@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mon site futuriste</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            color: white;
+            background: #03030b;
+            cursor: none;
+        }
+
+        /* ===== FOND ===== */
+
+        .fond {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 30%, #00eaff22, transparent 30%),
+                radial-gradient(circle at 80% 70%, #9b00ff22, transparent 30%),
+                #03030b;
+        }
+
+        /* Grille futuriste */
+
+        .grille {
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(#00eaff12 1px, transparent 1px),
+                linear-gradient(90deg, #00eaff12 1px, transparent 1px);
+
+            background-size: 50px 50px;
+
+            transform: perspective(500px) rotateX(60deg) scale(2);
+            transform-origin: center bottom;
+
+            animation: grille 8s linear infinite;
+        }
+
+        @keyframes grille {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 0 50px;
+            }
+        }
+
+        /* ===== MENU ===== */
+
+        nav {
+            position: fixed;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            display: flex;
+            gap: 35px;
+
+            padding: 15px 30px;
+
+            background: #ffffff0d;
+            border: 1px solid #00eaff55;
+            border-radius: 50px;
+
+            backdrop-filter: blur(15px);
+
+            z-index: 10;
+        }
+
+        nav a {
+            color: #bdefff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00eaff;
+            text-shadow: 0 0 15px #00eaff;
+        }
+
+        /* ===== PARTICULES ===== */
+
+        .particule {
+            position: fixed;
+
+            width: 4px;
+            height: 4px;
+
+            background: #00eaff;
+            border-radius: 50%;
+
+            box-shadow: 0 0 10px #00eaff;
+
+            animation: monter linear infinite;
+
+            z-index: 1;
+        }
+
+        @keyframes monter {
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        /* ===== CARTE ===== */
+
+        .carte {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 650px;
+            padding: 70px 50px;
+
+            text-align: center;
+
+            background: #ffffff0a;
+
+            border: 1px solid #00eaff66;
+            border-radius: 30px;
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 0 40px #00eaff22,
+                inset 0 0 40px #ffffff08;
+
+            z-index: 5;
+
+            transition: transform 0.15s ease-out;
+
+            animation: apparition 1.2s ease;
+        }
+
+        @keyframes apparition {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -45%) scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* ===== TITRE ===== */
+
+        h1 {
+            font-size: 65px;
+            letter-spacing: 5px;
+
+            background: linear-gradient(
+                90deg,
+                #00eaff,
+                white,
+                #a855f7,
+                #00eaff
+            );
+
+            background-size: 300%;
+
+            -webkit-background-clip: text;
+            color: transparent;
+
+            animation: titre 5s linear infinite;
+
+            text-shadow: 0 0 30px #00eaff55;
+        }
+
+        @keyframes titre {
+            from {
+                background-position: 0%;
+            }
+
+            to {
+                background-position: 300%;
+            }
+        }
+
+        p {
+            margin-top: 20px;
+            margin-bottom: 35px;
+
+            font-size: 20px;
+            color: #b8c7d9;
+        }
+
+        /* ===== BOUTON ===== */
+
+        .bouton {
+            display: inline-block;
+
+            padding: 16px 40px;
+
+            border: 1px solid #00eaff;
+            border-radius: 50px;
+
+            color: #00eaff;
+            text-decoration: none;
+
+            font-weight: bold;
+            letter-spacing: 2px;
+
+            transition: 0.3s;
+        }
+
+        .bouton:hover {
+            background: #00eaff;
+            color: #03030b;
+
+            box-shadow:
+                0 0 10px #00eaff,
+                0 0 30px #00eaff,
+                0 0 70px #00eaff;
+
+            transform: scale(1.1);
+        }
+
+        /* ===== CURSEUR ===== */
+
+        .curseur {
+            position: fixed;
+
+            width: 20px;
+            height: 20px;
+
+            border: 2px solid #00eaff;
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            transform: translate(-50%, -50%);
+
+            box-shadow:
+                0 0 10px #00eaff,
+                0 0 25px #00eaff;
+
+            z-index: 100;
+        }
+
+        .curseur::after {
+            content: "";
+
+            position: absolute;
+
+            width: 5px;
+            height: 5px;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background: white;
+            border-radius: 50%;
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 700px) {
+
+            .carte {
+                width: 90%;
+                padding: 50px 25px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            nav {
+                gap: 15px;
+                padding: 12px 20px;
+            }
+        }
+    .bouton {
+    background: transparent;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+.presentation {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(12px);
+
+    z-index: 50;
+}
+
+.presentation.active {
+    display: flex;
+    animation: apparitionPresentation 0.4s ease;
+}
+
+.presentation-box {
+    position: relative;
+
+    width: 500px;
+    padding: 50px;
+
+    text-align: center;
+
+    background: rgba(10, 15, 30, 0.9);
+
+    border: 1px solid #00eaff;
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 20px #00eaff,
+        0 0 60px #00eaff33;
+
+    animation: presentationBox 0.5s ease;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid #00eaff;
+    border-radius: 50%;
+
+    color: #00eaff;
+    font-size: 45px;
+    font-weight: bold;
+
+    box-shadow: 0 0 30px #00eaff;
+}
+
+.presentation-box h2 {
+    color: #cbd5e1;
+    font-size: 20px;
+}
+
+.presentation-box h3 {
+    margin: 10px 0 20px;
+
+    font-size: 42px;
+
+    color: #00eaff;
+
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 30px #00eaff;
+}
+
+.presentation-box p {
+    line-height: 1.7;
+}
+
+.fermer {
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    border: none;
+    background: transparent;
+
+    color: #00eaff;
+
+    font-size: 35px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.fermer:hover {
+    color: white;
+    transform: rotate(90deg);
+    text-shadow: 0 0 20px #00eaff;
+}
+
+@keyframes apparitionPresentation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes presentationBox {
+    from {
+        transform: scale(0.7) rotateX(20deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) rotateX(0);
+        opacity: 1;
+    }
+}
+    </style>
+</head>
+<script>
+
+function ouvrirPresentation() {
+    document.getElementById("presentation").classList.add("active");
+}
+
+function fermerPresentation() {
+    document.getElementById("presentation").classList.remove("active");
+}
+
+</script>
+<body>
+
+    <div class="fond"></div>
+    <div class="grille"></div>
+
+    <!-- MENU -->
+
+   <nav>
+    <a href="index.html">ACCUEIL</a>
+
+    <a href="projets.html">PROJETS</a>
+
+    <a href="boutique.html">BOUTIQUE</a>
+
+    <a href="tel:0743696389">CONTACT</a>
+</nav>
+    <!-- PARTICULES -->
+
+    <div class="particule" style="left:10%; animation-duration:7s;"></div>
+    <div class="particule" style="left:20%; animation-duration:5s;"></div>
+    <div class="particule" style="left:30%; animation-duration:8s;"></div>
+    <div class="particule" style="left:40%; animation-duration:6s;"></div>
+    <div class="particule" style="left:50%; animation-duration:9s;"></div>
+    <div class="particule" style="left:60%; animation-duration:5s;"></div>
+    <div class="particule" style="left:70%; animation-duration:7s;"></div>
+    <div class="particule" style="left:80%; animation-duration:6s;"></div>
+    <div class="particule" style="left:90%; animation-duration:8s;"></div>
+
+    <!-- CARTE PRINCIPALE -->
+
+    <main class="carte" id="carte">
+
+        <h1>MON SITE</h1>
+
+        <p>
+            Bienvenue dans l'univer de hugor gor
+        </p>
+
+        <button class="bouton" onclick="ouvrirPresentation()">
+    À PROPOS DE MOI
+</button>
+
+<div class="presentation" id="presentation">
+
+    <div class="presentation-box">
+
+        <button class="fermer" onclick="fermerPresentation()">×</button>
+
+        <div class="avatar">H</div>
+
+        <h2>Salut, moi c'est</h2>
+
+        <h3>hugorgor</h3>
+
+        <p>
+            Bienvenue sur mon site !<br>
+            Ici, tu peux découvrir mon univers,
+            mes projets et mes créations.
+        </p>
+
+    </div>
+
+</div>
+
+    </main>
+
+    <!-- CURSEUR -->
+
+    <div class="curseur" id="curseur"></div>
+
+    <script>
+
+        /* Curseur */
+
+        const curseur = document.getElementById("curseur");
+
+        document.addEventListener("mousemove", function(e) {
+
+            curseur.style.left = e.clientX + "px";
+            curseur.style.top = e.clientY + "px";
+
+        });
+
+
+        /* Effet 3D de la carte */
+
+        const carte = document.getElementById("carte");
+
+        document.addEventListener("mousemove", function(e) {
+
+            const x = (window.innerWidth / 2 - e.clientX) / 40;
+            const y = (window.innerHeight / 2 - e.clientY) / 40;
+
+            carte.style.transform =
+                `translate(-50%, -50%) rotateY(${-x}deg) rotateX(${y}deg)`;
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Mes projets - hugorgor</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        min-height: 100vh;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        color: white;
+        background: #03030b;
+        cursor: none;
+    }
+
+    /* ===== FOND ===== */
+
+    .fond {
+        position: fixed;
+        inset: 0;
+
+        background:
+            radial-gradient(circle at 20% 30%, #00eaff22, transparent 30%),
+            radial-gradient(circle at 80% 70%, #9b00ff22, transparent 30%),
+            #03030b;
+    }
+
+    /* ===== GRILLE ===== */
+
+    .grille {
+        position: fixed;
+        inset: 0;
+
+        background-image:
+            linear-gradient(#00eaff12 1px, transparent 1px),
+            linear-gradient(90deg, #00eaff12 1px, transparent 1px);
+
+        background-size: 50px 50px;
+
+        transform: perspective(500px) rotateX(60deg) scale(2);
+        transform-origin: center bottom;
+
+        animation: grille 8s linear infinite;
+    }
+
+    @keyframes grille {
+        from {
+            background-position: 0 0;
+        }
+
+        to {
+            background-position: 0 50px;
+        }
+    }
+
+    /* ===== MENU ===== */
+
+    nav {
+        position: fixed;
+        top: 25px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        display: flex;
+        gap: 35px;
+
+        padding: 15px 30px;
+
+        background: #ffffff0d;
+        border: 1px solid #00eaff55;
+        border-radius: 50px;
+
+        backdrop-filter: blur(15px);
+
+        z-index: 10;
+    }
+
+    nav a {
+        color: #bdefff;
+        text-decoration: none;
+
+        font-weight: bold;
+
+        transition: 0.3s;
+    }
+
+    nav a:hover {
+        color: #00eaff;
+
+        text-shadow:
+            0 0 15px #00eaff;
+    }
+
+    /* ===== PARTICULES ===== */
+
+    .particule {
+        position: fixed;
+
+        width: 4px;
+        height: 4px;
+
+        background: #00eaff;
+        border-radius: 50%;
+
+        box-shadow:
+            0 0 10px #00eaff;
+
+        animation: monter linear infinite;
+
+        z-index: 1;
+    }
+
+    @keyframes monter {
+
+        from {
+            transform: translateY(100vh);
+            opacity: 0;
+        }
+
+        20% {
+            opacity: 1;
+        }
+
+        80% {
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(-10vh);
+            opacity: 0;
+        }
+    }
+
+    /* ===== CARTE ===== */
+
+    .carte {
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        width: 750px;
+
+        padding: 60px 50px;
+
+        text-align: center;
+
+        background: #ffffff0a;
+
+        border: 1px solid #00eaff66;
+        border-radius: 30px;
+
+        backdrop-filter: blur(20px);
+
+        box-shadow:
+            0 0 40px #00eaff22,
+            inset 0 0 40px #ffffff08;
+
+        z-index: 5;
+
+        animation: apparition 1s ease;
+    }
+
+    @keyframes apparition {
+
+        from {
+            opacity: 0;
+
+            transform:
+                translate(-50%, -45%)
+                scale(0.8);
+        }
+
+        to {
+            opacity: 1;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+        }
+    }
+
+    /* ===== TITRE ===== */
+
+    h1 {
+        font-size: 60px;
+
+        letter-spacing: 5px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #00eaff,
+                white,
+                #a855f7,
+                #00eaff
+            );
+
+        background-size: 300%;
+
+        -webkit-background-clip: text;
+
+        color: transparent;
+
+        animation: titre 5s linear infinite;
+    }
+
+    @keyframes titre {
+
+        from {
+            background-position: 0%;
+        }
+
+        to {
+            background-position: 300%;
+        }
+    }
+
+    .description {
+        margin-top: 20px;
+        margin-bottom: 40px;
+
+        font-size: 20px;
+
+        color: #b8c7d9;
+    }
+
+    /* ===== PROJET ===== */
+
+    .projet {
+        padding: 35px;
+
+        background: #ffffff08;
+
+        border: 1px solid #00eaff55;
+
+        border-radius: 20px;
+
+        box-shadow:
+            inset 0 0 25px #00eaff08;
+
+        transition: 0.3s;
+    }
+
+    .projet:hover {
+        transform: translateY(-5px);
+
+        border-color: #00eaff;
+
+        box-shadow:
+            0 0 25px #00eaff33,
+            inset 0 0 25px #00eaff11;
+    }
+
+    .projet h2 {
+        font-size: 28px;
+
+        margin-bottom: 15px;
+
+        color: #00eaff;
+
+        text-shadow:
+            0 0 10px #00eaff;
+    }
+
+    .projet p {
+        margin-bottom: 25px;
+
+        color: #b8c7d9;
+
+        font-size: 17px;
+    }
+
+    /* ===== BOUTON ===== */
+
+    .bouton {
+        display: inline-block;
+
+        padding: 16px 40px;
+
+        border: 1px solid #00eaff;
+
+        border-radius: 50px;
+
+        color: #00eaff;
+
+        text-decoration: none;
+
+        font-weight: bold;
+
+        letter-spacing: 2px;
+
+        transition: 0.3s;
+    }
+
+    .bouton:hover {
+        background: #00eaff;
+
+        color: #03030b;
+
+        box-shadow:
+            0 0 10px #00eaff,
+            0 0 30px #00eaff,
+            0 0 70px #00eaff;
+
+        transform: scale(1.1);
+    }
+
+    /* ===== CURSEUR ===== */
+
+    .curseur {
+        position: fixed;
+
+        width: 20px;
+        height: 20px;
+
+        border: 2px solid #00eaff;
+
+        border-radius: 50%;
+
+        pointer-events: none;
+
+        transform: translate(-50%, -50%);
+
+        box-shadow:
+            0 0 10px #00eaff,
+            0 0 25px #00eaff;
+
+        z-index: 100;
+    }
+
+    .curseur::after {
+        content: "";
+
+        position: absolute;
+
+        width: 5px;
+        height: 5px;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        background: white;
+
+        border-radius: 50%;
+    }
+
+    /* ===== RESPONSIVE ===== */
+
+    @media (max-width: 800px) {
+
+        .carte {
+            width: 90%;
+            padding: 45px 25px;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        nav {
+            gap: 15px;
+            padding: 12px 20px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="fond"></div>
+<div class="grille"></div>
+
+<!-- MENU -->
+
+<nav>
+    <a href="index.html">ACCUEIL</a>
+
+    <a href="projets.html">PROJETS</a>
+
+    <a href="boutique.html">BOUTIQUE</a>
+
+    <a href="tel:0743696389">CONTACT</a>
+</nav>
+<!-- PARTICULES -->
+
+<div class="particule" style="left:10%; animation-duration:7s;"></div>
+<div class="particule" style="left:20%; animation-duration:5s;"></div>
+<div class="particule" style="left:30%; animation-duration:8s;"></div>
+<div class="particule" style="left:40%; animation-duration:6s;"></div>
+<div class="particule" style="left:50%; animation-duration:9s;"></div>
+<div class="particule" style="left:60%; animation-duration:5s;"></div>
+<div class="particule" style="left:70%; animation-duration:7s;"></div>
+<div class="particule" style="left:80%; animation-duration:6s;"></div>
+<div class="particule" style="left:90%; animation-duration:8s;"></div>
+
+
+<!-- CARTE -->
+
+<main class="carte">
+
+    <h1>MES PROJETS</h1>
+
+    <p class="description">
+        Découvre mes projets, mes créations et mon univers.
+    </p>
+
+    <div class="projet">
+
+        <h2>🎮 MA CHAÎNE YOUTUBE</h2>
+
+        <p>
+            Retrouve mes vidéos, mes créations et mes projets
+            sur ma chaîne YouTube.
+        </p>
+
+        <a
+            class="bouton"
+            href="https://www.youtube.com/@LUHGOLEG"
+            target="_blank"
+        >
+            VOIR MA CHAÎNE
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- CURSEUR -->
+
+<div class="curseur" id="curseur"></div>
+
+
+<script>
+
+    const curseur = document.getElementById("curseur");
+
+    document.addEventListener("mousemove", function(e) {
+
+        curseur.style.left = e.clientX + "px";
+
+        curseur.style.top = e.clientY + "px";
+
+    });
+
+</script>
+```
+
+</body>
+
+</html>
